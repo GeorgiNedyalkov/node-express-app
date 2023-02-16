@@ -1,0 +1,36 @@
+h4 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+form {
+    width: 300px;
+    margin-left: 20px;
+}
+
+form label {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+form input {
+    width: 320px;
+    height: 30px;
+    padding-left: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 8px;
+    outline: none;
+}
+
+input[type="submit"] {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #4e0a51;
+    color: white;
+    font-size: 15px;
+}
