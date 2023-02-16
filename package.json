@@ -4,7 +4,7 @@
   "description": "Skeleton build for an express application",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "SET node_env=production&& node index.js",
     "dev": "nodemon index.js"
   },
   "repository": {
