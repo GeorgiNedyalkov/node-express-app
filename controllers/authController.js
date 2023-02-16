@@ -1,10 +1,20 @@
 const router = require("express").Router();
 const authService = require("../services/authService");
 
+// Login
 router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const token = await authService.login(username, password);
+  res.cookie("auth", token);
+  res.redirect("/");
+});
+
+// Register
 router.get("/register", (req, res) => {
   res.render("auth/register");
 });
@@ -18,16 +28,6 @@ router.post("/register", async (req, res) => {
     password,
     repeatPassword
   );
-
-  console.log(user);
-
-  res.redirect("/");
-});
-
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  const token = authService.login(username, password);
 
   res.redirect("/");
 });

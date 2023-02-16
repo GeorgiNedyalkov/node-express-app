@@ -1,5 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("../lib/jsonwebtoken");
+const { SECRET } = require("../constants");
 
 exports.findUser = async (username, email) =>
   User.findOne({
@@ -25,7 +27,8 @@ exports.register = async (username, email, password, repeatPassword) => {
 };
 
 exports.login = async (username, password) => {
-  const user = this.findUser({ username });
+  const user = await this.findUser(username, null);
+  console.log(user);
 
   if (!username) {
     throw new Error("Invalid login credentials");
@@ -37,7 +40,12 @@ exports.login = async (username, password) => {
     throw new Error("Invalid login credentials");
   }
 
-  const token = "";
+  const payload = {
+    _id: user._id,
+    username: user.username,
+  };
+
+  const token = await jwt.sign(payload, SECRET);
 
   return token;
 };
