@@ -12,11 +12,22 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res) => {
   const { username, email, password, repeatPassword } = req.body;
 
-  if (password !== repeatPassword) {
-    throw new Error("Passwords do not match");
-  }
+  const user = await authService.register(
+    username,
+    email,
+    password,
+    repeatPassword
+  );
 
-  const user = authService.register(username, email, password, repeatPassword);
+  console.log(user);
+
+  res.redirect("/");
+});
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const token = authService.login(username, password);
 
   res.redirect("/");
 });
