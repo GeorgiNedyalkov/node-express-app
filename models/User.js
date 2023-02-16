@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
+    minLength: [5, "The username is too short"],
     required: true,
   },
   email: {
